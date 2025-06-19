@@ -1,0 +1,861 @@
+src/styles/layout.module.css
+
+/* --- Base Layout Styles (Matching App.js Structure) --- */
+.appContainer {
+    display: flex;
+    flex-direction: column; /* Stacks header and mainLayoutArea vertically */
+    min-height: 100vh; /* Ensures the app takes at least the full viewport height */
+    background-color: #f0f2f5;
+    padding: 0; /* No global padding here, sections will have their own */
+}
+
+.appHeader {
+    width: 100%;
+    padding: 20px 40px; /* Padding for the header */
+    background-color: #fff; /* White background for the header */
+    border-bottom: 1px solid #e0e0e0;
+    text-align: center; /* Center the title text */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow */
+    box-sizing: border-box; /* Include padding in element's total width/height */
+}
+
+.appHeader h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: #333;
+}
+
+.mainLayoutArea { /* This is the container for LayoutCanvas and ArticleSettingsPanel */
+    display: flex; /* Makes canvasWrapper and sidebar arrange horizontally */
+    flex: 1; /* Allows this area to grow and take remaining vertical space */
+    padding: 20px; /* Padding around the canvas and sidebar block */
+    justify-content: center; /* Centers the entire canvas + sidebar block horizontally */
+    align-items: flex-start; /* Aligns the entire block to the top of the mainLayoutArea */
+    overflow: hidden; /* Prevents overflow from children causing scrollbars on main area */
+}
+
+/* --- LayoutCanvas Specific Styles --- */
+.canvasWrapper { /* Wrapper for the "Magazine Layout Preview" title and the grid */
+    display: flex;
+    flex-direction: column; /* Stacks the canvasTitle and layoutCanvas vertically */
+    flex-shrink: 0; /* Prevents the canvas from shrinking */
+    max-width: 900px; /* Max width for the canvas content */
+    width: 100%; /* Allows it to be responsive up to max-width */
+    margin-right: 20px; /* Space between canvas and sidebar */
+    background-color: #ffffff; /* Background for the canvas area */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Padding inside the canvasWrapper, around title and grid */
+    box-sizing: border-box; /* Include padding in element's total width/height */
+    min-height: calc(100vh - 100px); /* Adjust based on appHeader height and mainLayoutArea padding */
+}
+
+.canvasTitle {
+    text-align: center;
+    margin-top: 0; /* Ensure no extra top margin */
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.layoutCanvas { /* The actual CSS Grid container where blocks are placed */
+    flex: 1; /* Allows the grid to fill the remaining space in canvasWrapper */
+    background-color: #c7cecef9; /* A light background for the grid area */
+    border: 2px dashed #ccc; /* Dotted border for the grid */
+    border-radius: 8px;
+    overflow: auto; /* In case blocks go beyond current view */
+    position: relative; /* Needed for absolute positioning of potential overlays/handles */
+    min-height: 400px; /* Ensure a minimum height for the grid */
+    padding: 10px;
+    height: 1200px; /* Padding within the grid itself */
+}
+
+/* Style for when an item is being dragged over the canvas (Feature 8) */
+.layoutCanvasDropping {
+    border: 2px dashed #007bff; /* Change border color to indicate a valid drop target */
+    background-color: rgba(0, 123, 255, 0.05); /* Subtle blue overlay */
+}
+
+/* --- Sidebar (ArticleSettingsPanel) Styles --- */
+.sidebar {
+    width: 350px; /* Fixed width for the sidebar */
+    background-color: #fff;
+    border-left: 1px solid #e0e0e0;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.05);
+    overflow-y: auto; /* Allows scrolling within the sidebar if content overflows */
+    display: flex;
+    flex-direction: column; /* Stacks sections within the sidebar vertically */
+    gap: 15px; /* Adds space between sidebar sections */
+    flex-shrink: 0; /* Prevents sidebar from shrinking below its width */
+    align-self: flex-start; /* Aligns this specific item to the top within the mainLayoutArea */
+    box-sizing: border-box; /* Include padding in total width */
+}
+
+.sidebarSection {
+    margin-bottom: 15px; /* Space between sections within the sidebar */
+}
+
+.sidebarSection h4 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+/* --- Styles for Feature 2: Layout & Grid Settings (in Sidebar) --- */
+.formGroup {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.formGroup label {
+    flex: 0 0 100px; /* Fixed width for labels */
+    font-size: 0.9em;
+    color: #495057;
+}
+
+.formGroup input[type="number"] {
+    flex-grow: 1; /* Input takes remaining space */
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 0.9em;
+    box-sizing: border-box;
+}
+
+.formGroup input[type="number"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.buttonGroup { /* Reused for presets and block selector */
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap to next line */
+    gap: 8px; /* Space between buttons */
+    margin-top: 10px;
+}
+
+.layoutPresetButton {
+    background-color: #f8f9fa;
+    border: 1px solid #007bff;
+    color: #007bff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: all 0.2s ease-in-out;
+    flex: 1; /* Allows buttons to share space */
+    min-width: 100px; /* Ensure a minimum width */
+    text-align: center;
+}
+
+.layoutPresetButton:hover {
+    background-color: #e9ecef;
+    border-color: #0056b3;
+}
+
+.layoutPresetButton.active { /* Used for active preset button */
+    background-color: #007bff;
+    color: #ffffff;
+    border-color: #007bff;
+}
+
+/* --- Styles for Feature 7: Block Selector Panel (in Sidebar) --- */
+.addBlockButton {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745; /* Green for adding */
+    color: white;
+    cursor: grab; /* Indicate it's draggable for Feature 8 */
+    font-size: 0.95em;
+    transition: background-color 0.2s ease-in-out;
+    flex: 1; /* Allow buttons to grow */
+    min-width: 120px; /* Ensure a minimum width */
+    text-align: center;
+}
+
+.addBlockButton:active {
+    cursor: grabbing; /* Indicate it's being dragged */
+}
+
+.addBlockButton:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* --- Styles for Blocks (GridBlock.jsx) --- */
+.gridBlock { /* Base style for the content block container, applied to the inner div of ResizableBox */
+    box-sizing: border-box; /* Include padding/border in element's total width/height */
+    height: 100%;
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #495057;
+    text-align: center;
+    min-height: 80px; /* Default minimum height */
+    overflow: hidden;
+    transition: background-color 0.2s ease;
+    cursor: grab; /* Indicate draggable */
+}
+
+.gridBlock:active {
+    cursor: grabbing; /* Indicate grabbing */
+}
+
+.gridBlock:hover {
+    background-color: #dee2e6; /* Slightly darker on hover */
+}
+
+/* Specific block type colors (for visual distinction, applied to .gridBlock) */
+.blockType-text { background-color: #d1ecf1; } /* Light blue */
+.blockType-image { background-color: #d4edda; } /* Light green */
+.blockType-video { background-color: #ffeeba; } /* Light yellow */
+.blockType-quote { background-color: #f8d7da; } /* Light red */
+
+/* --- Styles for Feature 3: Resizable Grid Blocks --- */
+/* This class is applied to the ResizableBox component in GridBlock.jsx */
+.resizableGridBlock {
+    /* These CSS variables will be set via inline style on the ResizableBox
+       to control its grid placement */
+    grid-column: var(--grid-column-start) / span var(--grid-column-span);
+    grid-row: var(--grid-row-start) / span var(--grid-row-span);
+    position: relative; /* ResizableBox handles need this */
+    box-sizing: border-box; /* Crucial to ensure padding/border are included in calculated size */
+    /* No direct width/height here, as react-resizable and grid handle it */
+}
+
+/* Base styles for the react-resizable handles */
+.react-resizable-handle {
+    background-color: rgba(0, 123, 255, 0.7);
+    border-radius: 4px;
+    opacity: 0.8;
+    width: 12px;
+    height: 12px;
+    transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    z-index: 10;
+}
+
+/* Hover effect for the handles */
+.react-resizable-handle:hover {
+    opacity: 1;
+    background-color: #007bff;
+}
+
+/* Specific positioning and cursor styles for different resize handles */
+.react-resizable-handle-se { /* South-East (bottom-right) */
+    bottom: -6px;
+    right: -6px;
+    cursor: se-resize;
+}
+.react-resizable-handle-s { /* South (bottom-middle) */
+    bottom: -6px;
+    left: 50%;
+    margin-left: -6px;
+    cursor: s-resize;
+}
+.react-resizable-handle-e { /* East (right-middle) */
+    right: -6px;
+    top: 50%;
+    margin-top: -6px;
+    cursor: e-resize;
+}
+
+/* Remove default ResizableBox outline which can be annoying */
+.react-resizable {
+    outline: none !important;
+}
+
+
+/* --- Styles for Feature 6: Content Blocks (Text, Image, Video, Quote) --- */
+/* These classes are applied to the inner content div within .gridBlock */
+.textBlock,
+.imageBlock,
+.videoBlock,
+.quoteBlock {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; /* Padding for content inside block */
+    border-radius: 4px; /* Matches parent for visual consistency */
+}
+
+.textBlock {
+    font-size: 1em;
+    line-height: 1.4;
+    color: #333;
+}
+
+.imageCaption {
+    font-size: 0.8em;
+    color: #555;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.quoteBlock {
+    font-style: italic;
+    font-size: 1.2em;
+    color: #444;
+    border-left: 3px solid #007bff;
+    padding-left: 15px; /* Creates space for the left border */
+}
+
+.quoteBlock cite {
+    font-style: normal;
+    font-size: 0.9em;
+    color: #777;
+    text-align: right;
+    margin-top: 5px;
+}
+
+/* --- Placeholder Text (e.g., for metadata section) --- */
+.placeholderText {
+    font-style: italic;
+    color: #6c757d;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+
+/* src/styles/layout.module.css */
+
+/* ... (Keep all your existing CSS) ... */
+
+/* --- NEW: Styles for Search & Filter in BlockSelectorPanel (Feature 9) --- */
+/* src/styles/layout.module.css */
+
+/* --- ArticleSettingsPanel Container --- */
+.articleSettingsPanel {
+    width: 300px;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background */
+    border-left: 1px solid #e9ecef;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.05);
+    overflow-y: auto; /* Enable scrolling for long content */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Spacing between sections */
+    font-family: Arial, sans-serif;
+    color: #343a40; /* Darker text for readability */
+}
+
+.articleSettingsPanel h3,
+.articleSettingsPanel h4 {
+    margin: 0; /* Reset default margins */
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dee2e6; /* Separator line */
+    color: #495057; /* Slightly darker heading color */
+}
+
+.articleSettingsPanel h4 {
+    font-size: 1.1em;
+    padding-top: 10px; /* Space above h4 */
+}
+
+/* --- Settings Group (labels and inputs) --- */
+.settingsGroup {
+    display: flex;
+    flex-direction: column; /* Stack label and input vertically */
+    gap: 5px; /* Space between label and input */
+}
+
+.settingsGroup label {
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #6c757d; /* Muted label color */
+}
+
+.settingsGroup input[type="number"],
+.settingsGroup input[type="text"] {
+    width: 100%; /* Full width within its container */
+    padding: 8px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px; /* Slightly more rounded corners */
+    box-sizing: border-box;
+    font-size: 0.9em;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.settingsGroup input[type="number"]:focus,
+.settingsGroup input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* --- Button Groups (Presets, Devices, View Mode) --- */
+.presetButtons,
+.deviceButtons,
+.viewModeToggle,
+.blockFilterButtons { /* Apply same flex properties to filter buttons */
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap to next line if space is limited */
+    gap: 8px; /* Space between buttons */
+    margin-top: 5px; /* Small space after heading/label */
+}
+
+.presetButtons button,
+.deviceButtons button,
+.viewModeToggle button {
+    flex: 1; /* Allow buttons to grow and shrink */
+    min-width: 80px; /* Ensure a minimum width for buttons */
+    background-color: #007bff; /* Primary blue for action buttons */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.presetButtons button:hover,
+.deviceButtons button:hover,
+.viewModeToggle button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-1px); /* Slight lift effect */
+}
+
+/* --- Specific active states for buttons (for highlight/color change) --- */
+.viewModeToggle button.activeViewMode,
+.deviceButtons button.activeDeviceMode { /* NEW: .activeDeviceMode for device buttons */
+    background-color: #28a745; /* Green for active state */
+    font-weight: bold;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2); /* Inset shadow for depth */
+}
+
+/* --- Add Block Buttons (Draggable Types) --- */
+.addBlockButtons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsive grid */
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.addBlockButton {
+    background-color: #6c757d; /* Muted gray for draggable blocks */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: grab; /* Indicate draggable */
+    font-size: 0.9em;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.addBlockButton:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px); /* Lift slightly on hover */
+}
+
+.addBlockButton.dragging {
+    background-color: #495057;
+    cursor: grabbing;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* --- Search Input Style --- */
+.searchInput {
+    width: 100%; /* Make it truly 100% now that settingsGroup handles gap */
+    padding: 8px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px; /* Consistent with other inputs */
+    box-sizing: border-box;
+    font-size: 0.9em;
+    margin-bottom: 10px; /* Space below search input */
+}
+.searchInput:focus { /* Add focus style for search input */
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+
+/* --- Block Filter Buttons --- */
+.blockFilterButtons button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.blockFilterButtons button:hover {
+    background-color: #5a6268;
+}
+
+.blockFilterButtons button.activeFilter {
+    background-color: #007bff;
+    font-weight: bold;
+}
+
+/* --- Existing Block on Grid (from GridBlock.jsx, some overlap in styles but important for visual consistency) --- */
+.resizableGridBlock {
+   
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: box-shadow 0.2s ease;
+}
+
+.resizableGridBlock:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.gridBlockInner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 0.9em;
+    color: #555;
+    text-align: center;
+    background-color: #f0f0f0; /* Default background for structure view */
+    border-radius: 4px;
+    position: relative; /* Needed for absolute positioning of resize handles */
+}
+
+/* Structure Mode specific styling */
+.structureModeActive .gridBlockInner {
+    background-color: #e0e0e0; /* Different background for structure mode */
+    border: 2px dashed #999; /* Dashed border for structure mode */
+}
+
+/* Specific colors for block types in structure view */
+.structureModeActive .blockType-text { background-color: #add8e6; border-color: #87ceeb; } /* Light blue */
+.structureModeActive .blockType-image { background-color: #90ee90; border-color: #3cb371; } /* Light green */
+.structureModeActive .blockType-video { background-color: #ffb6c1; border-color: #ff69b4; } /* Light pink */
+.structureModeActive .blockType-quote { background-color: #ffefd5; border-color: #deb887; } /* Light orange */
+
+
+/* --- Placeholder/Error Blocks --- */
+.errorBlockPlaceholder {
+    background-color: #f8d7da; /* light red */
+    color: #721c24; /* dark red text */
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    box-sizing: border-box;
+    opacity: 0.9;
+    border-radius: 4px;
+}
+
+.unknownBlockPlaceholder {
+    background-color: #ffeeba; /* light yellow */
+    color: #856404; /* dark yellow text */
+    border: 1px solid #ffeeba;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    box-sizing: border-box;
+    opacity: 0.9;
+    border-radius: 4px;
+}
+
+/* General button styling */
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    font-size: 1em;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button:active { /* General active state for all buttons */
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+
+
+/* src/styles/layout.module.css */
+
+/* ... (your existing CSS from previous steps) ... */
+
+/* --- Specific active states for buttons (for highlight/color change) --- */
+/* Unified style for active preset, device, and view mode buttons */
+.viewModeToggle button.activeViewMode,
+.deviceButtons button.activeDeviceMode,
+.presetButtons button.activePreset { /* NEW: .activePreset for layout preset buttons */
+    background-color: #28a745; /* Green for active state */
+    font-weight: bold;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2); /* Inset shadow for depth */
+    transform: none; /* Override hover/active transform for persistent active state */
+}
+
+/* Ensure hover/active styles don't conflict with active state */
+.viewModeToggle button.activeViewMode:hover,
+.deviceButtons button.activeDeviceMode:hover,
+.presetButtons button.activePreset:hover {
+    background-color: #28a745; /* Keep green on hover if active */
+    transform: none;
+}
+
+/* Make sure .activeFilter (for content block filters) is also green if desired */
+.blockFilterButtons button.activeFilter {
+    background-color: #28a745; /* Green for active filter button */
+    font-weight: bold;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+.blockFilterButtons button.activeFilter:hover {
+    background-color: #28a745; /* Keep green on hover if active */
+}
+
+
+/* src/styles/layout.module.css */
+
+/* Add this new block of CSS */
+
+/* Style for when a draggable block is hovered over the sidebar for deletion */
+.sidebarDropTargetActive {
+    background-color: #f8d7da; /* Light red background to indicate drop target */
+    border-left: 2px solid #dc3545; /* Red border on the left */
+}
+
+/* Style for the feedback message shown when dragging over the delete zone */
+.deleteZoneFeedback {
+    position: sticky; /* Keeps it in view while scrolling sidebar */
+    bottom: 20px; /* Position from the bottom of the sidebar */
+    margin-left: 10px; /* Adjust as needed */
+    margin-right: 10px; /* Adjust as needed */
+    background-color: #dc3545; /* Red background */
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 100; /* Ensures it appears on top */
+    /* Add margin-top if you want space above it when it appears, not sticky */
+    margin-top: 20px;
+}
+
+/* Ensure general button active/hover styles are consistent, just in case */
+button:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+
+
+/* src/styles/layout.module.css */
+
+/* ... (Your existing styles) ... */
+
+/* Ensure .settingsGroup has some spacing */
+.settingsGroup {
+    margin-bottom: 15px; /* Add some space between each setting group */
+}
+
+.settingsGroup label {
+    display: block; /* Make labels appear above inputs */
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: 0.9em;
+}
+
+.settingsGroup input[type="text"],
+.settingsGroup input[type="number"],
+.settingsGroup input[type="date"],
+.settingsGroup textarea {
+    width: 100%; /* Make inputs take full width of their container */
+    padding: 8px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    background-color: var(--input-background);
+    color: var(--text-color);
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    font-size: 0.9em;
+}
+
+.settingsGroup input:focus,
+.settingsGroup textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb, 0, 123, 255), 0.25);
+}
+
+.settingsGroup textarea {
+    resize: vertical; /* Allow vertical resizing of textarea */
+    min-height: 60px; /* Minimum height for textarea */
+}
+
+.imagePreview {
+    margin-top: 10px;
+    border: 1px dashed var(--border-color);
+    padding: 10px;
+    text-align: center;
+    background-color: var(--input-background);
+    border-radius: 4px;
+}
+
+.imagePreview img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove extra space below image */
+    margin: 0 auto 5px auto; /* Center image and add space below */
+    border-radius: 4px;
+}
+
+.imagePreview p {
+    font-size: 0.8em;
+    color: var(--secondary-color);
+    margin: 0;
+}
+
+/* Ensure h4 elements also have some consistent spacing */
+h4 {
+    margin-top: 25px; /* Space above new sections */
+    margin-bottom: 15px; /* Space below heading */
+    color: var(--text-color);
+}
+
+
+
+/* src/styles/layout.module.css */
+
+/* ... (Your existing styles) ... */
+
+/* --- NEW STYLES FOR TOOLBAR --- */
+
+.toolbar {
+    background-color: var(--sidebar-background); /* Or a slightly different color if desired */
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-start; /* Align items to the start */
+    align-items: center;
+    gap: 15px; /* Space between toolbar sections if you add more */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: sticky; /* Make it stick to the top */
+    top: 0;
+    z-index: 100; /* Ensure it stays above other content */
+    margin-bottom: 20px; /* Space between toolbar and canvas */
+}
+
+.toolbarSection {
+    display: flex;
+    gap: 8px; /* Space between buttons within a section */
+    align-items: center;
+}
+
+.toolbarButton {
+    background-color: var(--button-background);
+    color: var(--button-text-color);
+    border: 1px solid var(--button-border);
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.toolbarButton:hover:not(:disabled) {
+    background-color: var(--button-hover-background);
+    border-color: var(--button-hover-border);
+}
+
+.toolbarButton:active:not(:disabled) {
+    background-color: var(--button-active-background);
+    border-color: var(--button-active-border);
+}
+
+.toolbarButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Define some CSS variables for consistency if you haven't already */
+/* These would typically be in a variables.css or index.css, but adding here as an example */
+:root {
+    --primary-color: #007bff;
+    --primary-color-rgb: 0, 123, 255;
+    --text-color: #333;
+    --secondary-color: #666;
+    --background-color: #f8f9fa;
+    --sidebar-background: #ffffff;
+    --border-color: #ddd;
+    --input-background: #fdfdfd;
+    --input-border: #ccc;
+
+    --button-background: #e0e0e0;
+    --button-text-color: #333;
+    --button-border: #ccc;
+    --button-hover-background: #d0d0d0;
+    --button-hover-border: #bbb;
+    --button-active-background: #c0c0c0;
+    --button-active-border: #aaa;
+}
+
+
+
+/* src/styles/layout.module.css */
+
+/* ... (Your existing styles, including the .toolbar, .toolbarSection, .toolbarButton) ... */
+
+/* --- NEW STYLES FOR PRIMARY BUTTON --- */
+.primaryButton {
+    background-color: var(--primary-color); /* Use a distinct color for primary actions */
+    color: #fff; /* White text for contrast */
+    border-color: var(--primary-color);
+}
+
+.primaryButton:hover:not(:disabled) {
+    background-color: var(--primary-color-dark); /* A darker shade for hover */
+    border-color: var(--primary-color-dark);
+}
+
+.primaryButton:active:not(:disabled) {
+    background-color: var(--primary-color-darker); /* Even darker for active */
+    border-color: var(--primary-color-darker);
+}
+
+/* Add these variables to your :root and body.dark-mode if they don't exist */
+:root {
+    /* ... existing variables ... */
+    --primary-color: #007bff; /* Example blue */
+    --primary-color-dark: #0056b3;
+    --primary-color-darker: #004085;
+}
+
