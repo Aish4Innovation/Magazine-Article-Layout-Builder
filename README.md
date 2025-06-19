@@ -11,6 +11,7 @@ Users can define grid parameters, add various content blocks (text, images, vide
  ![image](https://github.com/user-attachments/assets/4329e562-de86-4629-9e63-35f14912b17b)
 
 2. **Custom Grid Builder:** Define custom rows, columns, and gaps.
+
    ![image](https://github.com/user-attachments/assets/16263098-8bd7-4cd9-ab7c-28f1a8ce9384)
 
 3.**Resizable Grid Blocks:** Dynamically resize and reposition content blocks within the grid.
