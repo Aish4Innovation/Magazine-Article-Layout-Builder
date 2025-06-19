@@ -27,6 +27,7 @@ Users can define grid parameters, add various content blocks (text, images, vide
 ![image](https://github.com/user-attachments/assets/8bfd3861-1137-45bb-b90d-f898eb5a2620)
 
 7.**Block Selector Panel:** Easy access to a variety of pre-defined content blocks.
+
 ![image](https://github.com/user-attachments/assets/f5804c46-3e2e-4848-91bf-12695fa1f823)
 
 8.**Drag-In Blocks:** Drag blocks from the library directly into the layout grid.
