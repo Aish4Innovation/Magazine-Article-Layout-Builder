@@ -1,25 +1,4 @@
-// import React from 'react';
-// import styles from '../../styles/layout.module.css';
 
-// function VideoBlock({ videoUrl }) {
-//   return (
-//     <div className={styles.videoBlock}>
-//       <iframe
-//         src={videoUrl}
-//         title="Embedded Video"
-//         frameBorder="0"
-//         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-//         allowFullScreen
-//         style={{ width: '100%', height: '100%' }}
-//       />
-//     </div>
-//   );
-// }
-
-// export default VideoBlock;
-
-
-// src/components/ContentBlocks/VideoBlock.jsx
 
 import React from 'react';
 import { useLayout } from '../../contexts/LayoutContext';
