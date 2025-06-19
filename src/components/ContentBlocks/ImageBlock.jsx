@@ -1,19 +1,4 @@
-// import React from 'react';
-// import styles from '../../styles/layout.module.css';
 
-// function ImageBlock({ imageUrl, altText }) {
-//   return (
-//     <div className={styles.imageBlock}>
-//       <img src={imageUrl} alt={altText} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
-//       {altText && <p className={styles.imageCaption}>{altText}</p>}
-//     </div>
-//   );
-// }
-
-// export default ImageBlock;
-
-
-// src/components/ContentBlocks/ImageBlock.jsx
 
 import React from 'react';
 import { useLayout } from '../../contexts/LayoutContext';
