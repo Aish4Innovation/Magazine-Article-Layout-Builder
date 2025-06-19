@@ -1,21 +1,5 @@
 
 
-// import React from 'react';
-// import styles from '../../styles/layout.module.css'; // Use shared layout styles
-
-// function TextBlock({ content }) {
-//   return (
-//     <div className={`${styles.textBlock}`}>
-//       <p>{content}</p>
-//     </div>
-//   );
-// }
-
-// export default TextBlock;
-
-// src/components/ContentBlocks/TextBlock.jsx
-
-// src/components/ContentBlocks/TextBlock.jsx
 
 import React, { useEffect } from 'react'; // ADDED useEffect here
 import { useLayout } from '../../contexts/LayoutContext';
