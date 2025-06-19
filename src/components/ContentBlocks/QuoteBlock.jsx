@@ -1,20 +1,4 @@
-// import React from 'react';
-// import styles from '../../styles/layout.module.css';
 
-// function QuoteBlock({ quoteText, author }) {
-//   return (
-//     <div className={styles.quoteBlock}>
-//       <blockquote>
-//         <p>{quoteText}</p>
-//       </blockquote>
-//       {author && <cite>- {author}</cite>}
-//     </div>
-//   );
-// }
-
-// export default QuoteBlock;
-
-// src/components/ContentBlocks/QuoteBlock.jsx
 
 import React from 'react';
 import { useLayout } from '../../contexts/LayoutContext';
