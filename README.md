@@ -15,6 +15,7 @@ Users can define grid parameters, add various content blocks (text, images, vide
    ![image](https://github.com/user-attachments/assets/16263098-8bd7-4cd9-ab7c-28f1a8ce9384)
 
 3.**Resizable Grid Blocks:** Dynamically resize and reposition content blocks within the grid.
+
 ![image](https://github.com/user-attachments/assets/a9738caa-72c9-45a0-8947-7a3dcda74322)
 
 4.**Snap-to-Grid:** Blocks automatically align to the grid for precise placement.
@@ -22,6 +23,7 @@ Users can define grid parameters, add various content blocks (text, images, vide
 5.**Drag-and-Drop Editing:** Intuitive interface for adding and moving content blocks.
 
 6.**Content Blocks:** Support for Text, Image, Video, and Quote content types.
+
 ![image](https://github.com/user-attachments/assets/8bfd3861-1137-45bb-b90d-f898eb5a2620)
 
 7.**Block Selector Panel:** Easy access to a variety of pre-defined content blocks.
@@ -30,22 +32,27 @@ Users can define grid parameters, add various content blocks (text, images, vide
 8.**Drag-In Blocks:** Drag blocks from the library directly into the layout grid.
 
 9.**Search & Filter:** Filter content blocks by type (e.g., "Text", "Media", "Quote").
+
 ![image](https://github.com/user-attachments/assets/ccdf8491-6375-44dc-877d-b92ce07c3bd2)
 ![image](https://github.com/user-attachments/assets/512b5d62-200f-4255-ba89-b6f1eeda6c1a)
 
 10.**Media Embeds:** Embed content from YouTube, Vimeo, Twitter, Instagram.
+
 ![image](https://github.com/user-attachments/assets/0580bb63-6bfd-470c-9da2-482fe1074c88)
 
 11.**Live Preview:** Real-time updates reflecting content and layout changes.
 
 12.**Device Simulator:** Preview layouts on desktop, tablet, and phone.
+
 ![image](https://github.com/user-attachments/assets/30e85e18-93d0-4b98-913a-c6b1291d6da0)
 
 13.**Content Toggle Mode:** Switch between structure view (skeleton) and full content view.
+
 ![image](https://github.com/user-attachments/assets/a7ba9798-e50d-462c-999d-026ccee7ae56)
 ![image](https://github.com/user-attachments/assets/7798a019-5b8b-4056-a7cb-79450a096e73)
 
 14.**Undo/Redo History:** Step-by-step history of layout and content changes.
+
 ![image](https://github.com/user-attachments/assets/80f3e009-d70d-4e8f-82b9-abf1cc355a10)
 
 15.**Auto Save Drafts:** Save progress locally or via API every few minutes.
@@ -54,13 +61,16 @@ Users can define grid parameters, add various content blocks (text, images, vide
 – Article metadata panel: title, author, date, tags, category, estimated read time.
 – SEO tags: meta title, description, and image preview.
 – Editable slug/URL input for the article.
+
 ![image](https://github.com/user-attachments/assets/b9a30675-cc6a-47f1-a535-ecca1a9aac88)
 
 17.**Publish-Ready Controls:**
 – Save as draft / publish button.
 – Schedule publishing with date/time picker.
 – Export final layout as HTML or JSON for CMS ingestion or static rendering.
+
 ![image](https://github.com/user-attachments/assets/99469792-ef6a-4582-a951-a46fbcd7c6a2)
+
 The downloaded JSON file has the following content - 
 {
   "metadata": {
